@@ -22,8 +22,10 @@ config :swiphly, SwiphlyWeb.Endpoint,
   debug_errors: true,
   secret_key_base: "QUWviuyGL/Sq8sPltD2d9GyGmxA30VMcOXWKSCWKTTERRZgwNcQlv5/bozIBbfo+",
   watchers: [
-    # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    # Run asset build script whenever you change files
+    # This replaces the default esbuilt that ships with Phoenix, to support additional plugins
+    # More information in the Phoenix docs - https://hexdocs.pm/phoenix/asset_management.html#esbuild-plugins
+    node: ["build.js", "--watch", cd: Path.expand("../assets", __DIR__)]
   ]
 
 # ## SSL Support
