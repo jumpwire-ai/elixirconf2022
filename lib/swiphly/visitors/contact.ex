@@ -2,7 +2,7 @@ defmodule Swiphly.Visitors.Contact do
   use Swiphly.Schema
   import Ecto.Changeset
 
-  @derive {Jason.Encoder, only: [:name, :company, :title, :event]}
+  @derive {Jason.Encoder, only: [:id, :name, :company, :title, :event]}
   schema "contacts" do
     field :company, :string
     field :event, :string

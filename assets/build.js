@@ -1,5 +1,6 @@
 const esbuild = require('esbuild')
 const sveltePlugin = require('esbuild-svelte')
+const postCssPlugin = require('esbuild-style-plugin')
 
 const args = process.argv.slice(2)
 const watch = args.includes('--watch')
@@ -11,7 +12,12 @@ const loader = {
 
 const plugins = [
   // Add and configure plugins here
-  sveltePlugin()
+  sveltePlugin(),
+  postCssPlugin({
+    postcss: {
+      plugins: [require('tailwindcss'), require('autoprefixer')],
+    },
+  })
 ]
 
 let opts = {
