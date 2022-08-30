@@ -29,6 +29,18 @@ We will be using an esbuild plugin to build Svelte components.
 Modify the Phoenix app to support esbuild plugins, default configuration of esbuild (via the Elixir wrapper).
 More details here - https://hexdocs.pm/phoenix/asset_management.html#esbuild-plugins
 
+### Running
+```
+iex -S mix phx.server
+```
+
+### Resources
+https://hexdocs.pm/phoenix/asset_management.html#esbuild-plugins
+https://hexdocs.pm/phoenix_live_view/Phoenix.LiveComponent.html
+https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#attach_hook/4
+https://github.com/EMH333/esbuild-svelte
+https://svelte.dev/tutorial/
+
 
 Steps
 - Initial setup of Phoenix project

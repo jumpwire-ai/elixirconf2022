@@ -18,7 +18,8 @@ defmodule SwiphlyWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    live "/hello", HelloLive
+    live "/simple-svelte-component", SimpleSvelteComponent
+    live "/push-event", PushEvent
   end
 
   # Other scopes may use custom stacks.
