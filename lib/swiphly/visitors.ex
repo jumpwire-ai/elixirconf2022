@@ -18,7 +18,7 @@ defmodule Swiphly.Visitors do
 
   """
   def list_contacts do
-    Repo.all(Contact)
+    Contact |> order_by(desc: :inserted_at) |> Repo.all()
   end
 
   @doc """
@@ -50,9 +50,16 @@ defmodule Swiphly.Visitors do
 
   """
   def create_contact(attrs \\ %{}) do
-    %Contact{}
+    result = %Contact{}
     |> Contact.changeset(attrs)
     |> Repo.insert()
+
+    case result do
+      {:ok, contact} ->
+        Phoenix.PubSub.broadcast!(Swiphly.PubSub, "contacts", {:new_contact, contact})
+        result
+      _ -> result
+    end
   end
 
   @doc """
@@ -100,5 +107,108 @@ defmodule Swiphly.Visitors do
   """
   def change_contact(%Contact{} = contact, attrs \\ %{}) do
     Contact.changeset(contact, attrs)
+  end
+
+  alias Swiphly.Visitors.Chat
+
+  @doc """
+  Returns the list of chats.
+
+  ## Examples
+
+      iex> list_chats()
+      [%Chat{}, ...]
+
+  """
+  def list_chats do
+    Chat |> order_by(desc: :inserted_at) |> Repo.all()
+  end
+
+  @doc """
+  Gets a single chat.
+
+  Raises `Ecto.NoResultsError` if the Chat does not exist.
+
+  ## Examples
+
+      iex> get_chat!(123)
+      %Chat{}
+
+      iex> get_chat!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_chat!(id), do: Repo.get!(Chat, id)
+
+  @doc """
+  Creates a chat.
+
+  ## Examples
+
+      iex> create_chat(%{field: value})
+      {:ok, %Chat{}}
+
+      iex> create_chat(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_chat(attrs \\ %{}) do
+    result = %Chat{}
+    |> Chat.changeset(attrs)
+    |> Repo.insert()
+
+    case result do
+      {:ok, chat} ->
+        Phoenix.PubSub.broadcast!(Swiphly.PubSub, "chats", {:new_chat, chat})
+        result
+      _ -> result
+    end
+  end
+
+  @doc """
+  Updates a chat.
+
+  ## Examples
+
+      iex> update_chat(chat, %{field: new_value})
+      {:ok, %Chat{}}
+
+      iex> update_chat(chat, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_chat(%Chat{} = chat, attrs) do
+    chat
+    |> Chat.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a chat.
+
+  ## Examples
+
+      iex> delete_chat(chat)
+      {:ok, %Chat{}}
+
+      iex> delete_chat(chat)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_chat(%Chat{} = chat) do
+    Repo.delete(chat)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking chat changes.
+
+  ## Examples
+
+      iex> change_chat(chat)
+      %Ecto.Changeset{data: %Chat{}}
+
+  """
+  def change_chat(%Chat{} = chat, attrs \\ %{}) do
+    Chat.changeset(chat, attrs)
   end
 end

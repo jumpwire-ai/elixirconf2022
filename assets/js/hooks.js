@@ -2,12 +2,14 @@ import HelloSvelte from "./components/simple-svelte-components/HelloSvelte.svelt
 import ContactForm from "./components/push-event/ContactForm.svelte"
 import ContactList from "./components/patch-event/ContactList.svelte"
 import NoEvent from "./components/no-event/ClientSide.svelte"
+import E2E from "./components/e-2-e/ChatWindow.svelte"
 
 const components = {
   HelloSvelte,
   ContactForm,
   ContactList,
-  NoEvent
+  NoEvent,
+  E2E
 }
 
 function parsedProps(el) {

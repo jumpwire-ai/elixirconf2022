@@ -62,4 +62,60 @@ defmodule Swiphly.VisitorsTest do
       assert %Ecto.Changeset{} = Visitors.change_contact(contact)
     end
   end
+
+  describe "chats" do
+    alias Swiphly.Visitors.Chat
+
+    import Swiphly.VisitorsFixtures
+
+    @invalid_attrs %{contact_id: nil, message: nil}
+
+    test "list_chats/0 returns all chats" do
+      chat = chat_fixture()
+      assert Visitors.list_chats() == [chat]
+    end
+
+    test "get_chat!/1 returns the chat with given id" do
+      chat = chat_fixture()
+      assert Visitors.get_chat!(chat.id) == chat
+    end
+
+    test "create_chat/1 with valid data creates a chat" do
+      valid_attrs = %{contact_id: 42, message: "some message"}
+
+      assert {:ok, %Chat{} = chat} = Visitors.create_chat(valid_attrs)
+      assert chat.contact_id == 42
+      assert chat.message == "some message"
+    end
+
+    test "create_chat/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Visitors.create_chat(@invalid_attrs)
+    end
+
+    test "update_chat/2 with valid data updates the chat" do
+      chat = chat_fixture()
+      update_attrs = %{contact_id: 43, message: "some updated message"}
+
+      assert {:ok, %Chat{} = chat} = Visitors.update_chat(chat, update_attrs)
+      assert chat.contact_id == 43
+      assert chat.message == "some updated message"
+    end
+
+    test "update_chat/2 with invalid data returns error changeset" do
+      chat = chat_fixture()
+      assert {:error, %Ecto.Changeset{}} = Visitors.update_chat(chat, @invalid_attrs)
+      assert chat == Visitors.get_chat!(chat.id)
+    end
+
+    test "delete_chat/1 deletes the chat" do
+      chat = chat_fixture()
+      assert {:ok, %Chat{}} = Visitors.delete_chat(chat)
+      assert_raise Ecto.NoResultsError, fn -> Visitors.get_chat!(chat.id) end
+    end
+
+    test "change_chat/1 returns a chat changeset" do
+      chat = chat_fixture()
+      assert %Ecto.Changeset{} = Visitors.change_chat(chat)
+    end
+  end
 end

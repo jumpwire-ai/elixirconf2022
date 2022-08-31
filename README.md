@@ -35,6 +35,12 @@ npm install esbuild esbuild-svelte svelte tailwindcss postcss autoprefixer esbui
 npm install ../deps/phoenix ../deps/phoenix_html ../deps/phoenix_live_view --save
 ```
 
+#### Ecto tables
+```
+mix phx.gen.context Visitors Contact contacts name:string title:string company:string event:string
+mix phx.gen.context Visitors Chat chats contact_id:integer message:string
+```
+
 ### Running
 ```
 iex -S mix phx.server

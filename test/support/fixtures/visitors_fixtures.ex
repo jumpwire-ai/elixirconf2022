@@ -20,4 +20,19 @@ defmodule Swiphly.VisitorsFixtures do
 
     contact
   end
+
+  @doc """
+  Generate a chat.
+  """
+  def chat_fixture(attrs \\ %{}) do
+    {:ok, chat} =
+      attrs
+      |> Enum.into(%{
+        contact_id: 42,
+        message: "some message"
+      })
+      |> Swiphly.Visitors.create_chat()
+
+    chat
+  end
 end

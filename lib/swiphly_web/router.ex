@@ -22,6 +22,7 @@ defmodule SwiphlyWeb.Router do
     live "/push-event", PushEvent
     live "/patch-event", PatchEvent
     live "/no-event", NoEvent
+    live "/e-2-e", EndToEnd
   end
 
   # Other scopes may use custom stacks.
