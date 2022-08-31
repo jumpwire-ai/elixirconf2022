@@ -63,9 +63,6 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                primary: themeColors.steel,
-                secondary: themeColors.orchid,
-                header: {...themeColors.orchid, DEFAULT: '#6b3077'},
                 ...themeColors,
             }
         },
