@@ -3,7 +3,7 @@
     export let content
 </script>
 
-<div class="shadow rounded-3xl p-2 bg-secondary-100">
+<div class="shadow rounded-3xl p-2 ml-2 bg-secondary-100">
     <p>This is {content}, in a silly font.</p>
     <Nested />
 </div>

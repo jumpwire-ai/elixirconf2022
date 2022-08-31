@@ -20,6 +20,7 @@ defmodule SwiphlyWeb.Router do
     get "/", PageController, :index
     live "/simple-svelte-component", SimpleSvelteComponent
     live "/push-event", PushEvent
+    live "/patch-event", PatchEvent
   end
 
   # Other scopes may use custom stacks.

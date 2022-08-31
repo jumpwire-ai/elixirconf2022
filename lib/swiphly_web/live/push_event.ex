@@ -15,7 +15,7 @@ defmodule SwiphlyWeb.PushEvent do
   @impl true
   def render(assigns) do
     ~H"""
-      <.live_component module={SwiphlyWeb.SvelteComponent} id="contacts" name="Contacts" props={%{contacts: @contacts}} />
+      <.live_component module={SwiphlyWeb.SvelteComponent} id="contacts" name="ContactForm" props={%{contacts: @contacts}} />
     """
   end
 
