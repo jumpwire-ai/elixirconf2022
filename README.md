@@ -3,7 +3,8 @@ Code examples for ElixirConf 2022 talk on using Svelte with Phoenix LiveView.
 
 This project is built with the following components:
 - Phoenix v1.6.11
-- 
+- Svelte v3.49.0
+- npm modules tailwindcss, postcss, autoprefixier, esbuild-style-plugin, daisyui, esbuild-svelte
 
 
 ## Initial setup
