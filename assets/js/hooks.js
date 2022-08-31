@@ -1,11 +1,13 @@
 import HelloSvelte from "./components/simple-svelte-components/HelloSvelte.svelte"
 import ContactForm from "./components/push-event/ContactForm.svelte"
 import ContactList from "./components/patch-event/ContactList.svelte"
+import NoEvent from "./components/no-event/ClientSide.svelte"
 
 const components = {
   HelloSvelte,
   ContactForm,
-  ContactList
+  ContactList,
+  NoEvent
 }
 
 function parsedProps(el) {

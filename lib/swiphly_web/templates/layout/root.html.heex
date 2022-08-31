@@ -10,7 +10,7 @@
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
   <body>
-    <header class="flex flex-row justify-start gap-x-4 pt-4 border-b border-orchid-800 drop-shadow">
+    <header class="flex flex-row justify-start pt-4 border-b gap-x-4 border-orchid-800 drop-shadow">
       <img src={Routes.static_path(@conn, "/images/phoenix-logo.png")} alt="Phoenix Framework Logo" class="h-16 ml-4"/>
       <div class="py-8 -mt-4">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-8 h-8 text-orchid-600">
@@ -18,17 +18,18 @@
         </svg>
       </div>
       <img src={Routes.static_path(@conn, "/images/svelte-logo.png")} alt="Svelte Framework Logo" class="h-16"/>
-      <h1 class="text-4xl text-orchid-800 font-sans font-bold">
+      <h1 class="font-sans text-4xl font-bold text-orchid-800">
         E2E Reactivity using Svelte with Phoenix LiveView
       </h1>
     </header>
-    <main class="ml-2 mt-4">
+    <main class="mt-4 ml-2">
       <div class="grid grid-cols-5 space-x-2">
         <nav>
           <div class="btn-group btn-group-vertical">
             <a href="/simple-svelte-component" class="btn">Simple Components</a>
             <a href="/push-event" class="btn">Push events</a>
             <a href="/patch-event" class="btn">Navigation</a>
+            <a href="/no-event" class="btn">Svelte state</a>
           </div>
         </nav>
         <main class="col-span-4 pr-4">

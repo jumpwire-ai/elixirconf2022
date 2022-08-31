@@ -1,16 +1,15 @@
 <script>
     import Contact from './Contact.svelte'
+    import { faker } from '@faker-js/faker'
     export let contacts, request
     let form
     let formResult = ''
-
-    console.log("CONTACTS", contacts)
 
     function createContact() {
         const data = new FormData(form)
         request('create', Object.fromEntries(data.entries()), (result) => {
             if (result?.success) {
-                form.reset()
+                setTimeout(() => { form.reset() }, 555)
                 formResult = 'Contact created'
             } else if (result?.reason) {
                 formResult = `Error creating contact: ${result.reason}`
@@ -21,36 +20,58 @@
     }
 
     function deleteContact(id) {
-        request('delete', {contact_id: id}, () => {})
+        request('delete', { contact_id: id }, () => {})
     }
+
+    function flip(list) {
+        return list[Math.floor(Math.random() * list.length)]
+    }
+
+    function fakeSubmit() {
+        form.querySelector('input[name="name"]').value = faker.name.fullName()
+        form.querySelector('input[name="title"]').value = flip([
+            'CEO',
+            'CTO',
+            'VPE',
+            'SSE',
+            'CISO',
+            'CIO',
+            'CCO'
+        ])
+        form.querySelector('input[name="company"]').value = faker.company.bs()
+        form.querySelector('input[name="event"]').value = flip(['BlackHat', 'fintech_devcon', 'ElixirConf22', 'finnovate', 'Money2020'])
+        createContact()
+    }
+
+    
 </script>
 
 <form
-    class="form-control grid grid-cols-2 gap-4"
+    class="grid grid-cols-2 gap-4 form-control"
     bind:this={form}
     on:submit|preventDefault={createContact}
 >
     <label class="input-group input-group-vertical">
         <span>Name</span>
-        <input type="text" class="input input-bordered" name="name" />
+        <input type="text" class="input input-bordered focus:outline-0" name="name" />
     </label>
     <label class="input-group input-group-vertical">
         <span>Title</span>
-        <input type="text" class="input input-bordered" name="title" />
+        <input type="text" class="input input-bordered focus:outline-0" name="title" />
     </label>
     <label class="input-group input-group-vertical">
         <span>Company</span>
-        <input type="text" class="input input-bordered" name="company" />
+        <input type="text" class="input input-bordered focus:outline-0" name="company" />
     </label>
     <label class="input-group input-group-vertical">
         <span>Event</span>
-        <input type="text" class="input input-bordered" name="event" placeholder="ElixirConf22" />
+        <input type="text" class="input input-bordere focus:outline-0" name="event" placeholder="ElixirConf22" />
     </label>
-    <input type="submit" name="submit" value="Submit" class="btn btn-primary w-28" />
+    <input type="submit" name="submit" value="Submit" class="btn btn-primary w-28" on:click|stopPropagation|preventDefault={fakeSubmit} />
     <div class="font-semibold text-accent">{formResult}</div>
 </form>
 
-<div class="overflow-x-auto mt-10">
+<div class="mt-10 overflow-x-auto">
     <table class="table w-full">
         <!-- head -->
         <thead>

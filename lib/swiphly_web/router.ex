@@ -21,6 +21,7 @@ defmodule SwiphlyWeb.Router do
     live "/simple-svelte-component", SimpleSvelteComponent
     live "/push-event", PushEvent
     live "/patch-event", PatchEvent
+    live "/no-event", NoEvent
   end
 
   # Other scopes may use custom stacks.

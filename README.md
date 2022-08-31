@@ -50,6 +50,8 @@ https://svelte.dev/tutorial/
 
 Steps
 - Initial setup of Phoenix project
-- Update Phoenix to use self-defined esbuild, so we can add plugins for building svelte into the esbuild pipeline
-- Install npm dev dependecies (esbuild, svelte, esbuild-svelte)
+- (Update Phoenix to use self-defined esbuild, so we can add plugins for building svelte into the esbuild pipeline)
+- (Install npm dev dependecies)
+- Create custom phoenix-live JS hook that integrates live-component lifecycle with Svelte lifecycle
 - Create a live component to wrap div with encoded props and phx-hook bootstrapping a Svelte component in JS
+- Build live-views to update server state from params and events

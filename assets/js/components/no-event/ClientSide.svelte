@@ -1,42 +1,41 @@
 <script>
     import ContactCard from './ContactCard.svelte'
     import EmptyContactCard from './EmptyContactCard.svelte'
-    export let contacts, selected, sort, goto
+    export let contacts
+    let selected = null
+    let sort = "name"
 
-    function sortBy(order) {
-        url = selected
-            ? `/patch-event?contact=${selected.id}&sort=${order}`
-            : `/patch-event?sort=${order}`
-        goto(url)
+    function sortContacts(s) {
+        return contacts.sort((a, b) => a[s].localeCompare(b[s]))
     }
+
+    $: sortedContacts = sortContacts(sort)
 </script>
 
 <div class="grid grid-cols-5 pl-4 space-x-4">
     <div>
         <div class="flex flex-row pb-1 space-x-2 text-sm text-secondary-700">
             <div>Sort by:</div>
-            <a
+            <button
                 class="underline cursor"
-                href="/patch-event?sort=name"
-                on:click|preventDefault={() => sortBy('name')}
+                on:click|preventDefault={() => sort = 'name'}
                 class:font-bold={sort == 'name'}
             >
                 Name
-            </a>
-            <a
+            </button>
+            <button
                 class="underline cursor"
-                href="/patch-event?sort=name"
-                on:click|preventDefault={() => sortBy('created')}
-                class:font-bold={sort == 'created'}
+                on:click|preventDefault={() => sort = 'inserted_at'}
+                class:font-bold={sort == 'inserted_at'}
             >
                 Created
-            </a>
+            </button>
         </div>
         <ul class="border divide-y-2 rounded-sm border-primary-200">
-            {#each contacts as contact (contact.id)}
+            {#each sortedContacts as contact (contact.id)}
                 <li
                     class="cursor-pointer"
-                    on:click={() => goto(`/patch-event?contact=${contact.id}&sort=${sort}`)}
+                    on:click={() => selected = contact}
                 >
                     <button class="btn btn-link">{contact.name}</button>
                 </li>
