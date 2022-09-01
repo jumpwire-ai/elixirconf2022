@@ -28,17 +28,24 @@ Modify the Phoenix app to support esbuild plugins, bypassing the default configu
 Follow instructions here to alter the generated scaffold - https://hexdocs.pm/phoenix/asset_management.html#esbuild-plugins
 
 ### Node modules
-This application uses the following node dependences during `esbuild`
+This application needs following node dependences to be installed
 ```
 npm install esbuild svelte tailwindcss postcss autoprefixer esbuild-svelte esbuild-style-plugin daisyui @faker-js/faker --save-dev
 npm install ../deps/phoenix ../deps/phoenix_html ../deps/phoenix_live_view --save
 ```
 
 ### Ecto tables
-The following database tables are defined used by this application:
+The following database tables are used by this demo
 ```
 mix phx.gen.context Visitors Contact contacts name:string title:string company:string event:string
 mix phx.gen.context Visitors Chat chats contact_id:integer message:string
+```
+
+### Setup
+On first clone, you'll need to setup Elixir and run migrations to create the database:
+```
+mix setup
+mix ecto.migrate
 ```
 
 ### Running
@@ -53,12 +60,3 @@ https://hexdocs.pm/phoenix_live_view/Phoenix.LiveComponent.html
 https://hexdocs.pm/phoenix_live_view/Phoenix.LiveView.html#attach_hook/4
 https://github.com/EMH333/esbuild-svelte
 https://svelte.dev/tutorial/
-
-
-Steps
-- Initial setup of Phoenix project
-- (Update Phoenix to use self-defined esbuild, so we can add plugins for building svelte into the esbuild pipeline)
-- (Install npm dev dependecies)
-- Create custom phoenix-live JS hook that integrates live-component lifecycle with Svelte lifecycle
-- Create a live component to wrap div with encoded props and phx-hook bootstrapping a Svelte component in JS
-- Build live-views to update server state from params and events

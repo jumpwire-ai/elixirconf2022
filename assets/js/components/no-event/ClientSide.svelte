@@ -15,8 +15,7 @@
 <div class="grid grid-cols-5 pl-4 space-x-4">
     <div>
         {#if contacts.length > 0}
-        <div class="flex flex-row pb-1 space-x-2 text-sm text-primary-content">
-            <div>Sort by:</div>
+        <div class="flex flex-row pb-1 space-x-2 text-xs text-primary-content">
             <button
                 class="cursor"
                 on:click|preventDefault={() => sort = 'name'}
@@ -24,6 +23,9 @@
                 class:underline={sort != 'name'}
             >
                 Name
+                {#if sort == 'name'}
+                ⬇️
+                {/if}
             </button>
             <button
                 class="cursor"
@@ -32,6 +34,9 @@
                 class:underline={sort != 'inserted_at'}
             >
                 Created
+                {#if sort == 'inserted_at'}
+                ⬇️
+                {/if}
             </button>
         </div>
         {/if}
