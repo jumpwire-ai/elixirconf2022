@@ -20,7 +20,6 @@
     }
 
     function lookupContact(cid) {
-        console.log(contacts.find((c) => c.id == cid))
         return contacts.find((c) => c.id == cid)
     }
 </script>
