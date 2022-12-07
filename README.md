@@ -1,6 +1,10 @@
 # elixirconf2022
 Code examples for ElixirConf 2022 talk on using Svelte with Phoenix LiveView.
 
+A more descriptive write-up of the talk can be found [here on dev.to](https://dev.to/debussyman/e2e-reactivity-using-svelte-with-phoenix-liveview-38mf).
+
+[![ElixirConf 2022 - using Svelte with Phoenix LiveView](https://i.ytimg.com/vi/asm2TTm035o/maxresdefault.jpg)](https://www.youtube.com/watch?v=asm2TTm035o)
+
 This project is built with the following components:
 - Phoenix v1.6.11
 - Svelte v3.49.0
