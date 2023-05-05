@@ -57,7 +57,11 @@ On first clone, you'll need to setup Elixir and run migrations to create the dat
 mix setup
 mix ecto.migrate
 ```
-
+and install the necessary npm modules
+```
+cd assets
+npm install
+```
 ## Running
 To run the Phoenix server with an interactive shell, use the following command:
 ```
